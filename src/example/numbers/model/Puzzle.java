@@ -31,20 +31,35 @@ public class Puzzle implements Iterable<Tile>{
 	//Set the column of the Winning Tile
 	public void setWinCol(int c) {this.winCol = c;}
 
-	
-
-	//I don't think these will actually be necessary, these relate to the puzzle, not tiles. Kept them in to think on it
 	public void setDir(MoveType direction) {dir = direction;}
 	public MoveType getDir()	{return dir;}
-
+	
 	public void add(Tile t, int col, int row) {
 		t.setCol(col);
 		t.setRow(row);
 				
 		tiles.add(t);
 		originals.add(t.copy());
-		
 	}
+	
+	
+	/**
+	 * Search the list of tiles and return the one that is in the specified location
+	 */
+	
+	//Question for professor: is there a way to return the actual tile instead of a copy. 
+// think this will be useful later when i need to find the tile again to change the number for it
+	public int findTile(int c, int r) {
+		int tileNum = 0;
+		for(Tile t : tiles) {
+			if(t.getCol() == c && t.getRow() == r) {
+				tileNum = t.getNumberInt();
+			}
+		}
+		return tileNum;
+	}
+	
+	
 	
 	public boolean isCovered(Coordinate coord) {
 		for(Tile t : tiles) {

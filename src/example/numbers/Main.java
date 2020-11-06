@@ -15,17 +15,17 @@ public class Main {
 		Puzzle puzzle = new Puzzle(3,3);
 		NumberPuzzleApp app = new NumberPuzzleApp(m);
 		
-		//puzzle.add(new Tile(1,1,1), 0, 0);
-		puzzle.add(new Tile(1,1,2), 0, 1);
-		//puzzle.add(new Tile(1,1,3), 0, 2);
+		puzzle.add(new Tile(1,1,3), 0, 0);
+		puzzle.add(new Tile(1,1,1), 0, 1);
+		puzzle.add(new Tile(1,1,2), 0, 2);
 		
 		puzzle.add(new Tile(1,1,4), 1, 0);
-		//puzzle.add(new Tile(1,1,5), 1, 1);
+		puzzle.add(new Tile(1,1,5), 1, 1);
 		puzzle.add(new Tile(1,1,6), 1, 2);
 		
-		//puzzle.add(new Tile(1,1,7), 2, 0);
-		puzzle.add(new Tile(1,1,8), 2, 1);
-		//puzzle.add(new Tile(1,1,9), 2, 2);
+		puzzle.add(new Tile(1,1,7), 2, 0);
+		puzzle.add(new Tile(1,1,4), 2, 1);
+		puzzle.add(new Tile(1,1,8), 2, 2);
 		
 		m.setPuzzle(puzzle);
 			
@@ -37,5 +37,6 @@ public class Main {
 		});
 		
 		app.setVisible(true);
+
 	}
 }

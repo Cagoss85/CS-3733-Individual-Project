@@ -72,8 +72,6 @@ public class NumberPuzzleApp extends JFrame {
 		
 		actualNumMoves = new JLabel("" + model.getNumMoves());
 		
-		JButton quitButton = new JButton("Quit");
-		
 		resetButton = new JButton("Reset");
 		resetButton.addActionListener(new ActionListener(){
 			@Override
@@ -126,29 +124,27 @@ public class NumberPuzzleApp extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 										.addComponent(numMovesLabel)
 										.addComponent(actualNumMoves))
-									.addPreferredGap(ComponentPlacement.RELATED, 102, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED, 140, Short.MAX_VALUE))
 								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 									.addGap(27)
 									.addComponent(leftButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
 									.addComponent(rightButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 									.addGap(26))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(100)
-									.addComponent(upButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE))
 								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(downButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+									.addGap(98))
+								.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(upButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 									.addGap(98))))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(resetButton)
-							.addPreferredGap(ComponentPlacement.RELATED, 520, Short.MAX_VALUE)
-							.addComponent(quitButton)))
+						.addComponent(resetButton, Alignment.LEADING))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -157,9 +153,7 @@ public class NumberPuzzleApp extends JFrame {
 					.addContainerGap()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(resetButton)
-								.addComponent(quitButton))
+							.addComponent(resetButton)
 							.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_contentPane.createSequentialGroup()

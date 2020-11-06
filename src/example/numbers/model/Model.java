@@ -50,7 +50,8 @@ public class Model {
 		if(coord.col > 0) {			
 			boolean available = true;
 			for(int r = 0 ; r < t.height ; r++) {
-				if(puzzle.isCovered(new Coordinate(coord.col - 1, coord.row))) {
+				System.out.print("tt");
+				if((puzzle.findTile(coord.col-1,coord.row) - t.getNumberInt()) < 0) {
 					available = false;
 				}
 			}
@@ -60,10 +61,10 @@ public class Model {
 		}
 		
 		//right
-		if(coord.col  + t.width< puzzle.numCols) {
+		if(coord.col  + t.width < puzzle.numCols) {
 			boolean available = true;
 			for(int r = 0 ; r < t.height ; r++) {
-				if(puzzle.isCovered(new Coordinate(coord.col + t.width, coord.row))) {
+				if(puzzle.findTile(coord.col + 1, coord.row) + t.getNumberInt() < 0) {
 					available = false;
 				}
 			}
@@ -76,7 +77,7 @@ public class Model {
 		if(coord.row > 0) {			
 			boolean available = true;
 			for(int c = 0 ; c < t.width ; c++) {
-				if(puzzle.isCovered(new Coordinate(coord.col, coord.row - 1))) {
+				if(puzzle.findTile(coord.col, coord.row - 1) * t.getNumberInt() < 0) {
 					available = false;
 				}
 			}
@@ -86,10 +87,12 @@ public class Model {
 		}
 		
 		//Down
-		if(coord.row + t.height< puzzle.numRows) {
+		if(coord.row + t.height < puzzle.numRows) {
 			boolean available = true;
 			for(int c = 0 ; c < t.width ; c++) {
-				if(puzzle.isCovered(new Coordinate(coord.col, coord.row + t.height))) {
+				float x = ((float)puzzle.findTile(coord.col, coord.row + 1) / (float)t.getNumberInt());
+				System.out.print(x);
+				if(x != (int)x) {
 					available = false;
 				}
 			}

@@ -7,6 +7,7 @@ public class Tile {
 	int row;					//y location on puzzle
 	int col;					//x location on puzzle
 	boolean isCenter = false;
+	boolean hasNumber = true;
 	
 	//Tile constructor
 	public Tile(int width, int height, int number) {
@@ -27,6 +28,7 @@ public class Tile {
 	//sets number stored for a Tile
 	public void setNumber(int x) {this.number = x;}
 
+	public int getNumberInt() {return this.number;}
 	//Returns the row coordinate for a Tile
 	public int getRow() {return this.row;}
 	//Sets a new row coordinate for the Tile
