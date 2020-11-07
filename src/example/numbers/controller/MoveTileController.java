@@ -17,9 +17,9 @@ public class MoveTileController {
 	public boolean move(MoveType dir) {
 		if(model.getSelTile() == null) {return false;}
 		
-		if(model.tryMove(dir)) {
-			
+		if(model.combineTile(dir)) {
 			UpdateButtons.enableButtons(app, model.availableMoves());
+			
 			app.getActualNumMovesLabel().setText("" + model.getNumMoves());
 			app.repaint();
 		}

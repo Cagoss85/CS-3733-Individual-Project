@@ -29,7 +29,7 @@ public class SelectTileController {
 				model.clearSelTile();
 				model.setSelTile(t);
 				
-				List<MoveType>moves = model.availableMoves(t);
+				List<MoveType> moves = model.determineValidMoves(t);
 				UpdateButtons.enableButtons(app, moves);
 				app.repaint();
 			}

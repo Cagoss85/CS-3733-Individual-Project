@@ -48,7 +48,7 @@ public class PuzzlePanel extends JPanel {
 			if(t.equals(selectedTile)) {
 				g.setColor(Color.green);
 			}
-			else if(t.getIsSelectable() == false) {
+			else if(t.isBlank()) {
 				g.setColor(Color.LIGHT_GRAY);
 			}
 			else g.setColor(Color.gray);
@@ -56,8 +56,9 @@ public class PuzzlePanel extends JPanel {
 			Rectangle r = computeRectangle(t);
 			g.fillRect(r.x, r.y, r.width, r.height);
 			g.setColor(Color.black);
-			if(t.isNumHid() == false) {
-				g.drawString(t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
+			
+			if(t.isBlank() == false) {
+				g.drawString("" + t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
 			}
 		}
 	}

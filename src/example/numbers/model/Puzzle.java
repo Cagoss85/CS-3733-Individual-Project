@@ -49,8 +49,6 @@ public class Puzzle implements Iterable<Tile>{
 	public Tile findTile(int c, int r) {
 		for(Tile t : tiles) {
 			if((t.getCol() == c && t.getRow() == r)) {
-				System.out.println("Tile has been found - " + t.getNumber());
-				System.out.println(t.isNumHid());
 				return t;
 			}
 		}

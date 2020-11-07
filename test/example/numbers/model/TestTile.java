@@ -26,7 +26,7 @@ class TestTile {
 		t.setRow(0);
 		System.out.print(t.height);
 		assertTrue(t.contains(new Coordinate(0,0)));
-		assertTrue(t.contains(new Coordinate(0,1)));
+		assertFalse(t.contains(new Coordinate(0,1)));
 		
 		assertFalse(t.contains(new Coordinate(1,1)));
 	}
