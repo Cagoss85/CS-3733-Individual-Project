@@ -22,7 +22,6 @@ public class SelectTileController {
 
 	public void process(Point point) {
 		Coordinate c = app.getPuzzlePanel().pointToCoordinate(point);
-		System.out.print(c);
 		Puzzle puzzle = model.getPuzzle();
 		
 		for(Tile t : puzzle) {

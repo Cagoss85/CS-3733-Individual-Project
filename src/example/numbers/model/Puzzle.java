@@ -46,17 +46,15 @@ public class Puzzle implements Iterable<Tile>{
 	/**
 	 * Search the list of tiles and return the one that is in the specified location
 	 */
-	
-	//Question for professor: is there a way to return the actual tile instead of a copy. 
-// think this will be useful later when i need to find the tile again to change the number for it
-	public int findTile(int c, int r) {
-		int tileNum = 0;
+	public Tile findTile(int c, int r) {
 		for(Tile t : tiles) {
-			if(t.getCol() == c && t.getRow() == r) {
-				tileNum = t.getNumberInt();
+			if((t.getCol() == c && t.getRow() == r)) {
+				System.out.println("Tile has been found - " + t.getNumber());
+				System.out.println(t.isNumHid());
+				return t;
 			}
 		}
-		return tileNum;
+		return null;
 	}
 	
 	

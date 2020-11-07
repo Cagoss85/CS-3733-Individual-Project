@@ -20,7 +20,6 @@ public class MoveTileController {
 		if(model.tryMove(dir)) {
 			
 			UpdateButtons.enableButtons(app, model.availableMoves());
-			
 			app.getActualNumMovesLabel().setText("" + model.getNumMoves());
 			app.repaint();
 		}

@@ -8,7 +8,7 @@ class TestTile {
 
 	@Test
 	void testConstruction() {
-		Tile tile = new Tile(1,1,1);
+		Tile tile = new Tile(1);
 		assertEquals (1,tile.width);
 		assertEquals(1,tile.height);
 	}
@@ -21,7 +21,7 @@ class TestTile {
 	 */
 	@Test
 	void testContains() {
-		Tile t = new Tile(1,2,2);
+		Tile t = new Tile(2);
 		t.setCol(0);
 		t.setRow(0);
 		System.out.print(t.height);

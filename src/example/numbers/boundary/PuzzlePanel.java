@@ -35,7 +35,6 @@ public class PuzzlePanel extends JPanel {
 		return new Coordinate(p.x/tileSize, p.y/tileSize);
 	}
 
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -44,19 +43,22 @@ public class PuzzlePanel extends JPanel {
 		
 		Tile selectedTile = model.getSelTile();
 		Puzzle puzzle = model.getPuzzle();
+		
 		for(Tile t : puzzle) {
 			if(t.equals(selectedTile)) {
 				g.setColor(Color.green);
 			}
-			else {
-				g.setColor(Color.gray);
+			else if(t.getIsSelectable() == false) {
+				g.setColor(Color.LIGHT_GRAY);
 			}
+			else g.setColor(Color.gray);
+			
 			Rectangle r = computeRectangle(t);
 			g.fillRect(r.x, r.y, r.width, r.height);
 			g.setColor(Color.black);
-			g.drawString(t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
-			
+			if(t.isNumHid() == false) {
+				g.drawString(t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
+			}
 		}
 	}
-	
 }
