@@ -10,44 +10,51 @@ public class Model {
 	boolean gameOver;
 	boolean isWon = false;
 	
+	//checks to see if the game is won
 	public void isGameWon() {
 		if(checkPerimeter()) {
 			gameOver = true;
 			isWon = true;
 		}
-		else if(checkCenter() || checkCorners() || sideLocked() || topLocked()){
+		else if(centerMoved() || checkCorners() || sidesLocked()){
 			gameOver = true;
 			isWon = false;
 		}
 		else {}
 	}
 	
-	private boolean topLocked() {
-		float x = (float)puzzle.getTile(1, 1).getNumber() / (float)puzzle.getTile(1, 0).getNumber(); 
-		if(cornersGone() &&
-				puzzle.getTile(0, 1).isBlank() &&
-				puzzle.getTile(1, 2).isBlank() &&
-				puzzle.getTile(2, 1).isBlank() &&
-				(x != (int)x)) {
-			return true;
+	//Checks if the top or right tile is locked
+	public boolean sidesLocked() {
+		float x = (float)puzzle.getTile(1, 1).getNumber() / (float)puzzle.getTile(1, 0).getNumber();
+		if(cornersGone()) {
+			//top and side locked
+			if(numMoves == 6 && puzzle.getTile(0, 1).isBlank() &&
+					puzzle.getTile(1, 2).isBlank() &&
+					puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0 &&
+					(x != (int)x)) {
+				return true;
+			}
+			if(numMoves == 7) {
+				//top Locked
+				if(puzzle.getTile(0, 1).isBlank() &&
+						puzzle.getTile(1, 2).isBlank() &&
+						puzzle.getTile(2, 1).isBlank() &&
+						(x != (int)x)) {
+					return true;
+				}
+				//side Locked
+				if(puzzle.getTile(0, 1).isBlank() &&
+						puzzle.getTile(1, 0).isBlank() &&
+						puzzle.getTile(1, 2).isBlank() &&
+						puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0){
+					return true;
+				}
+			}
 		}
-		
 		return false;
 	}
 	
-	private boolean sideLocked() {
-		if(cornersGone() &&
-				puzzle.getTile(0, 1).isBlank() &&
-				puzzle.getTile(1, 0).isBlank() &&
-				puzzle.getTile(1, 2).isBlank() &&
-				puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0) {
-			return true;
-		}
-		
-		return false;
-	}
-
-
+	//Checks if every corner tile is blank
 	public boolean cornersGone() {
 		if(puzzle.getTile(0,0).isBlank() &&
 				puzzle.getTile(0,2).isBlank() &&
@@ -58,12 +65,12 @@ public class Model {
 		return false;
 	}
 
-	//determines if a corner is isolated and has no neighbors
+	//determines if any corner is isolated and has no neighbors
 	private boolean checkCorners() {
-		if(checkACorner(Tiles.TopLeft) ||
-				checkACorner(Tiles.TopRight) ||
-				checkACorner(Tiles.BottomLeft) ||
-				checkACorner(Tiles.BottomRight)
+		if(checkACorner(CornerTiles.TopLeft) ||
+				checkACorner(CornerTiles.TopRight) ||
+				checkACorner(CornerTiles.BottomLeft) ||
+				checkACorner(CornerTiles.BottomRight)
 				){
 			return true;
 		}
@@ -71,28 +78,28 @@ public class Model {
 	}
 	
 	//checks each corner tile to see if its locked
-	private boolean checkACorner(Tiles t) {
+	private boolean checkACorner(CornerTiles t) {
 		int col = t.getCol();
 		int row = t.getRow();
-		if(t == Tiles.TopLeft) {
+		if(t == CornerTiles.TopLeft) {
 			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row + 1).isBlank() && puzzle.getTile(col + 1, row).isBlank()) {
 				System.out.println("TL Isolated");
 				return true;
 			}
 		}
-		if(t == Tiles.TopRight) {
+		if(t == CornerTiles.TopRight) {
 			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row + 1).isBlank() && puzzle.getTile(col - 1, row).isBlank()) {
 				System.out.println("TR Isolated");
 				return true;
 			}
 		}
-		if(t == Tiles.BottomLeft) {
+		if(t == CornerTiles.BottomLeft) {
 			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row - 1).isBlank() && puzzle.getTile(col + 1, row).isBlank()) {
 				System.out.println("BL Isolated");
 				return true;
 			}
 		}
-		if(t == Tiles.BottomRight) {
+		if(t == CornerTiles.BottomRight) {
 			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row - 1).isBlank() && puzzle.getTile(col - 1, row).isBlank()) {
 				System.out.println("BR Isolated");
 				return true;
@@ -101,7 +108,7 @@ public class Model {
 		return false;
 	}
 
-	private boolean checkCenter() {
+	private boolean centerMoved() {
 		if(puzzle.getTile(1,1).isBlank()){
 			System.out.println("center is gone");
 			return true;
@@ -115,6 +122,7 @@ public class Model {
 	public boolean getGameOver() {return gameOver;}
 	public void setGameOver(boolean flag) {this.gameOver = flag;}
 	
+	//Looks for winning condition
 	private boolean checkPerimeter() {
 		if(puzzle.getTile(0,0).isBlank() &&
 			puzzle.getTile(0,1).isBlank() &&
@@ -130,6 +138,7 @@ public class Model {
 		}
 		return false;
 	}
+	
 	
 	public List<MoveType> availableMoves() {
 		ArrayList<MoveType> moves = new ArrayList<>();
