@@ -19,7 +19,6 @@ public class MoveTileController {
 		
 		if(model.combineTile(dir)) {
 			UpdateButtons.enableButtons(app, model.availableMoves());
-			
 			app.getActualNumMovesLabel().setText("" + model.getNumMoves());
 			app.repaint();
 		}

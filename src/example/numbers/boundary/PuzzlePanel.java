@@ -13,7 +13,6 @@ import example.numbers.model.Puzzle;
 import example.numbers.model.Tile;
 
 public class PuzzlePanel extends JPanel {
-	
 	Model model;
 	public static final int tileSize = 120;
 	public static final int offset = 2;
@@ -34,7 +33,7 @@ public class PuzzlePanel extends JPanel {
 	public Coordinate pointToCoordinate(Point p) {
 		return new Coordinate(p.x/tileSize, p.y/tileSize);
 	}
-
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -43,13 +42,18 @@ public class PuzzlePanel extends JPanel {
 		
 		Tile selectedTile = model.getSelTile();
 		Puzzle puzzle = model.getPuzzle();
+		model.isGameWon();
 		
 		for(Tile t : puzzle) {
+			
 			if(t.equals(selectedTile)) {
 				g.setColor(Color.green);
 			}
 			else if(t.isBlank()) {
 				g.setColor(Color.LIGHT_GRAY);
+			}
+			else if(model.getGameOver()) {
+				g.setColor(Color.yellow);
 			}
 			else g.setColor(Color.gray);
 			
@@ -60,6 +64,9 @@ public class PuzzlePanel extends JPanel {
 			if(t.isBlank() == false) {
 				g.drawString("" + t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
 			}
+			
 		}
+		
 	}
+	
 }
