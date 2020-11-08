@@ -1,6 +1,7 @@
 package example.numbers.boundary;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -42,7 +43,7 @@ public class PuzzlePanel extends JPanel {
 		
 		Tile selectedTile = model.getSelTile();
 		Puzzle puzzle = model.getPuzzle();
-		model.isGameWon();
+		
 		
 		for(Tile t : puzzle) {
 			
@@ -62,9 +63,9 @@ public class PuzzlePanel extends JPanel {
 			g.setColor(Color.black);
 			
 			if(t.isBlank() == false) {
-				g.drawString("" + t.getNumber(), r.x + r.width/2, r.y + (r.height/2));
+				g.setFont(new Font("Tahoma", Font.BOLD, 24));
+				g.drawString("" + t.getNumber(), r.x + 45, r.y+65);
 			}
-			
 		}
 		
 	}

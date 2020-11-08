@@ -26,7 +26,6 @@ public class Main {
 		puzzle.addTile(new Tile(8), 2, 0);
 		puzzle.addTile(new Tile(2), 2, 1);
 		puzzle.addTile(new Tile(7), 2, 2);
-		
 		m.setPuzzle(puzzle);
 			
 		app.addWindowListener(new WindowAdapter(){
@@ -36,7 +35,7 @@ public class Main {
 			}
 		});
 		
-		m.isGameWon();
+		
 		app.setVisible(true);
 	}
 }

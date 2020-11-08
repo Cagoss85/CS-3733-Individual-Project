@@ -10,4 +10,6 @@ public enum MoveType {
 		this.deltaR = dr;
 		this.deltaC = dc;
 	}
+	
+
 }

@@ -10,24 +10,105 @@ public class Model {
 	boolean gameOver;
 	boolean isWon = false;
 	
-	public void resetPuzzle() {
-		puzzle.resetPuzzle();
-		selectedTile = null;
-		numMoves = 0;
-		gameOver = false;
-		isWon = false;
-	}
-	
 	public void isGameWon() {
 		if(checkPerimeter()) {
 			gameOver = true;
 			isWon = true;
 		}
-		else {
+		else if(checkCenter() || checkCorners() || sideLocked() || topLocked()){
+			gameOver = true;
+			isWon = false;
 		}
-		
+		else {}
 	}
 	
+	private boolean topLocked() {
+		float x = (float)puzzle.getTile(1, 1).getNumber() / (float)puzzle.getTile(1, 0).getNumber(); 
+		if(cornersGone() &&
+				puzzle.getTile(0, 1).isBlank() &&
+				puzzle.getTile(1, 2).isBlank() &&
+				puzzle.getTile(2, 1).isBlank() &&
+				(x != (int)x)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean sideLocked() {
+		if(cornersGone() &&
+				puzzle.getTile(0, 1).isBlank() &&
+				puzzle.getTile(1, 0).isBlank() &&
+				puzzle.getTile(1, 2).isBlank() &&
+				puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0) {
+			return true;
+		}
+		
+		return false;
+	}
+
+
+	public boolean cornersGone() {
+		if(puzzle.getTile(0,0).isBlank() &&
+				puzzle.getTile(0,2).isBlank() &&
+				puzzle.getTile(2,0).isBlank() &&
+				puzzle.getTile(2,2).isBlank()){
+			return true;
+		}
+		return false;
+	}
+
+	//determines if a corner is isolated and has no neighbors
+	private boolean checkCorners() {
+		if(checkACorner(Tiles.TopLeft) ||
+				checkACorner(Tiles.TopRight) ||
+				checkACorner(Tiles.BottomLeft) ||
+				checkACorner(Tiles.BottomRight)
+				){
+			return true;
+		}
+		return false;
+	}
+	
+	//checks each corner tile to see if its locked
+	private boolean checkACorner(Tiles t) {
+		int col = t.getCol();
+		int row = t.getRow();
+		if(t == Tiles.TopLeft) {
+			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row + 1).isBlank() && puzzle.getTile(col + 1, row).isBlank()) {
+				System.out.println("TL Isolated");
+				return true;
+			}
+		}
+		if(t == Tiles.TopRight) {
+			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row + 1).isBlank() && puzzle.getTile(col - 1, row).isBlank()) {
+				System.out.println("TR Isolated");
+				return true;
+			}
+		}
+		if(t == Tiles.BottomLeft) {
+			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row - 1).isBlank() && puzzle.getTile(col + 1, row).isBlank()) {
+				System.out.println("BL Isolated");
+				return true;
+			}
+		}
+		if(t == Tiles.BottomRight) {
+			if((puzzle.getTile(col,row).isBlank == false) && puzzle.getTile(col, row - 1).isBlank() && puzzle.getTile(col - 1, row).isBlank()) {
+				System.out.println("BR Isolated");
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean checkCenter() {
+		if(puzzle.getTile(1,1).isBlank()){
+			System.out.println("center is gone");
+			return true;
+		}
+		return false;
+	}
+
 	public boolean getIsWon() {return isWon;}
 	public void setIsWon(boolean flag) {this.isWon = flag;}
 	
@@ -48,32 +129,6 @@ public class Model {
 			return true;
 		}
 		return false;
-			
-	}
-
-	public boolean combineTile(MoveType dir) {
-		if(selectedTile == null) {return false;	}
-		for(MoveType move : availableMoves()) {
-			if(dir == move) {
-				if(dir == MoveType.Right) {
-					puzzle.getTile(selectedTile.col + 1, selectedTile.row).setNumber(puzzle.getTile(selectedTile.col + 1, selectedTile.row).getNumber() + selectedTile.getNumber());
-				}
-				else if(dir == MoveType.Left) {
-					puzzle.getTile(selectedTile.col - 1, selectedTile.row).setNumber(puzzle.getTile(selectedTile.col - 1, selectedTile.row).getNumber() - selectedTile.getNumber());
-				}
-				else if(dir == MoveType.Up) {
-					puzzle.getTile(selectedTile.col, selectedTile.row - 1).setNumber(puzzle.getTile(selectedTile.col, selectedTile.row - 1).getNumber() * selectedTile.getNumber());
-				}
-				else if(dir == MoveType.Down) {
-					puzzle.getTile(selectedTile.col, selectedTile.row + 1).setNumber(puzzle.getTile(selectedTile.col, selectedTile.row + 1).getNumber() / selectedTile.getNumber());
-				}
-				selectedTile.setBlank(true);
-				numMoves++;
-				clearSelTile();
-				return true;
-			}
-		}
-		return true;
 	}
 	
 	public List<MoveType> availableMoves() {
@@ -81,6 +136,7 @@ public class Model {
 		if(selectedTile == null) {return moves;}
 		return determineValidMoves(selectedTile);
 	}
+	
 
 	public List<MoveType> determineValidMoves(Tile t) {
 		ArrayList<MoveType> moves = new ArrayList<>();
@@ -147,6 +203,39 @@ public class Model {
 		}
 		else{}
 		return moves;
+	}
+	
+	public boolean combineTile(MoveType dir) {
+		if(selectedTile == null) {return false;	}
+		for(MoveType move : availableMoves()) {
+			if(dir == move) {
+				if(dir == MoveType.Right) {
+					puzzle.getTile(selectedTile.col + 1, selectedTile.row).setNumber(puzzle.getTile(selectedTile.col + 1, selectedTile.row).getNumber() + selectedTile.getNumber());
+				}
+				else if(dir == MoveType.Left) {
+					puzzle.getTile(selectedTile.col - 1, selectedTile.row).setNumber(puzzle.getTile(selectedTile.col - 1, selectedTile.row).getNumber() - selectedTile.getNumber());
+				}
+				else if(dir == MoveType.Up) {
+					puzzle.getTile(selectedTile.col, selectedTile.row - 1).setNumber(puzzle.getTile(selectedTile.col, selectedTile.row - 1).getNumber() * selectedTile.getNumber());
+				}
+				else if(dir == MoveType.Down) {
+					puzzle.getTile(selectedTile.col, selectedTile.row + 1).setNumber(puzzle.getTile(selectedTile.col, selectedTile.row + 1).getNumber() / selectedTile.getNumber());
+				}
+				selectedTile.setBlank(true);
+				numMoves++;
+				clearSelTile();
+				return true;
+			}
+		}
+		return true;
+	}
+	
+	public void resetPuzzle() {
+		puzzle.resetPuzzle();
+		selectedTile = null;
+		numMoves = 0;
+		gameOver = false;
+		isWon = false;
 	}
 
 	public Puzzle getPuzzle() {return puzzle;}
