@@ -66,7 +66,7 @@ public class Model {
 	}
 
 	//determines if any corner is isolated and has no neighbors
-	private boolean checkCorners() {
+	public boolean checkCorners() {
 		if(checkACorner(CornerTiles.TopLeft) ||
 				checkACorner(CornerTiles.TopRight) ||
 				checkACorner(CornerTiles.BottomLeft) ||

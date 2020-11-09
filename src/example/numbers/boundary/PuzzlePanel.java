@@ -54,7 +54,7 @@ public class PuzzlePanel extends JPanel {
 				g.setColor(Color.LIGHT_GRAY);
 			}
 			else if(model.getGameOver()) {
-				g.setColor(Color.yellow);
+				g.setColor(Color.orange);
 			}
 			else g.setColor(Color.gray);
 			

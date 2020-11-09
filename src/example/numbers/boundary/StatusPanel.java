@@ -22,7 +22,7 @@ public class StatusPanel extends JPanel{
 		if(model.getGameOver()) {
 			g.setFont(new Font("Tahoma", Font.BOLD, 18));
 			if(model.getIsWon()) {
-				g.setColor(Color.green);
+				g.setColor(Color.blue);
 				g.drawString("You Won!",10,20);
 			}
 			else {
