@@ -13,9 +13,8 @@ public class StatusController {
 	}
 
 	public void check() {
-		model.isGameWon();
-		app.repaint();
-		
+		model.checkStatus();
+		this.app.repaint();
 	}
 	
 	

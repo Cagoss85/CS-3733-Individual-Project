@@ -18,17 +18,14 @@ public class StatusPanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(model == null) {return;}
-		
-		if(model.getGameOver()) {
-			g.setFont(new Font("Tahoma", Font.BOLD, 18));
-			if(model.getIsWon()) {
-				g.setColor(Color.blue);
-				g.drawString("You Won!",10,20);
-			}
-			else {
-				g.setColor(Color.red);
-				g.drawString("You Lost!",10,20);
-			}
+		g.setFont(new Font("Tahoma", Font.BOLD, 18));
+		if(model.getIsWon()) {
+			g.setColor(Color.blue);
+			g.drawString("You Won!",10,20);
+		}
+		if(!model.getIsWon() && model.getGameOver()){
+			g.setColor(Color.red);
+			g.drawString("You Lost!",10,20);
 		}
 	}
 	

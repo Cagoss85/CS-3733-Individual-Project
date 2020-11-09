@@ -11,7 +11,7 @@ public class Model {
 	boolean isWon = false;
 	
 	//checks to see if the game is won
-	public void isGameWon() {
+	public void checkStatus() {
 		if(checkPerimeter()) {
 			gameOver = true;
 			isWon = true;

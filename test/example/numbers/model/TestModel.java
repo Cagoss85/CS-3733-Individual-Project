@@ -29,7 +29,7 @@ public class TestModel extends ModelTestCase{
 		Tile t = model.getPuzzle().getTile(1, 1);
 		model.setSelTile(t);
 		assertTrue(model.combineTile(MoveType.Right));
-		model.isGameWon();
+		model.checkStatus();
 		assertFalse(model.getIsWon());
 		assertTrue(model.getGameOver());
 	}
@@ -68,7 +68,7 @@ public class TestModel extends ModelTestCase{
 		t = model.getPuzzle().getTile(2, 1);
 		model.setSelTile(t);
 		assertTrue(model.combineTile(MoveType.Left));
-		model.isGameWon();
+		model.checkStatus();
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ public class TestModel extends ModelTestCase{
 		model.setSelTile(t);
 		assertTrue(model.combineTile(MoveType.Up));
 	
-		model.isGameWon();
+		model.checkStatus();
 		assertTrue(model.sidesLocked());
 	}
 	
@@ -131,7 +131,7 @@ public class TestModel extends ModelTestCase{
 		model.setSelTile(t);
 		assertTrue(model.combineTile(MoveType.Up));
 	
-		model.isGameWon();
+		model.checkStatus();
 		assertTrue(model.sidesLocked());
 	}
 	
@@ -165,7 +165,7 @@ public class TestModel extends ModelTestCase{
 		model.setSelTile(t);
 		assertTrue(model.combineTile(MoveType.Down));
 	
-		model.isGameWon();
+		model.checkStatus();
 		assertTrue(model.sidesLocked());
 	}
 	

@@ -16,17 +16,17 @@ public class TestStatusController extends AppTestCase{
 	@Test
 	public void testMove2() {
 		SelectTileController stc = new SelectTileController(model,app);
-		Point pt = coordinateToPoint(new Coordinate(0,0));
-		assertEquals(new Coordinate(0,0), app.getPuzzlePanel().pointToCoordinate(pt));
+		Point pt = coordinateToPoint(new Coordinate(1,1));
+		assertEquals(new Coordinate(1,1), app.getPuzzlePanel().pointToCoordinate(pt));
 		
 		stc.process(pt);
 		
 		MoveTileController mtc = new MoveTileController(model, app);
 		StatusController sc = new StatusController(model, app);
-		assertTrue(mtc.move(MoveType.Down));
-		
+		assertTrue(mtc.move(MoveType.Right));
 		sc.check();
 		
+		assertTrue(model.getGameOver());
+		assertFalse(model.getIsWon());
 	}
-
 }

@@ -16,5 +16,6 @@ public class TestQuitController extends AppTestCase{
 		assertEquals(false, app.isVisible());
 		
 	}
+	
 
 }
