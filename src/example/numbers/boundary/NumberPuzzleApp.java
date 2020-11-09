@@ -39,16 +39,12 @@ public class NumberPuzzleApp extends JFrame {
 	JButton upButton, downButton, rightButton, leftButton, resetButton;
 	JLabel actualNumMoves;
 	
-	
-	
-	public StatusPanel getStatusPanel() {return statPanel;}
 	public PuzzlePanel getPuzzlePanel() {return panel;}
 	public JButton getUpButton() { return upButton;}
 	public JButton getDownButton() { return downButton;}
 	public JButton getRightButton() { return rightButton;}
 	public JButton getLeftButton() { return leftButton;}
 	public JLabel getActualNumMovesLabel () {return actualNumMoves;}
-	public JButton getResetButton() { return resetButton;}
 
 	public NumberPuzzleApp(Model m) {
 		super();

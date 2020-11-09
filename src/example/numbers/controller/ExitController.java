@@ -24,4 +24,12 @@ public class ExitController {
 			app.dispose();
 		}
 	}
+	
+	public void exitTest() {
+		int c = 0;
+		if(c == JOptionPane.OK_OPTION) {
+			app.setVisible(false);
+			app.dispose();
+		}
+	}
 }
