@@ -10,7 +10,7 @@ public class Puzzle implements Iterable<Tile>{
 	public final int numCols;
 	MoveType dir;
 	
-	public Puzzle(int numRows, int numCols	) {
+	public Puzzle(int numCols, int numRows	) {
 		this.numRows = numRows;
 		this.numCols = numCols;
 	}
