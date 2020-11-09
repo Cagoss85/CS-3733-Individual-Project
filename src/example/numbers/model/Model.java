@@ -30,7 +30,7 @@ public class Model {
 			//top and side locked
 			if(numMoves == 6 && puzzle.getTile(0, 1).isBlank() &&
 					puzzle.getTile(1, 2).isBlank() &&
-					puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0 &&
+					puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() <= 0 &&
 					(x != (int)x)) {
 				return true;
 			}
@@ -46,7 +46,7 @@ public class Model {
 				if(puzzle.getTile(0, 1).isBlank() &&
 						puzzle.getTile(1, 0).isBlank() &&
 						puzzle.getTile(1, 2).isBlank() &&
-						puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() < 0){
+						puzzle.getTile(1, 1).getNumber() - puzzle.getTile(2, 1).getNumber() <= 0){
 					return true;
 				}
 			}
@@ -156,7 +156,7 @@ public class Model {
 			if(coord.col > 0) {	
 				boolean available = true;
 				for(int r = 0 ; r < t.height ; r++) {
-					if(((puzzle.getTile(coord.col - 1,coord.row).getNumber() - t.getNumber()) < 0)) {
+					if(((puzzle.getTile(coord.col - 1,coord.row).getNumber() - t.getNumber()) <= 0)) {
 						available = false;
 					}
 					if(puzzle.getTile(coord.col - 1, coord.row).isBlank()) {
@@ -170,7 +170,7 @@ public class Model {
 			if(coord.col  + t.width < puzzle.numCols) {
 				boolean available = true;
 				for(int r = 0 ; r < t.height ; r++) {
-					if(puzzle.getTile(coord.col + 1, coord.row).getNumber() + t.getNumber() < 0) {
+					if(puzzle.getTile(coord.col + 1, coord.row).getNumber() + t.getNumber() <= 0) {
 						available = false;
 					}
 					if(puzzle.getTile(coord.col + 1, coord.row).isBlank()) {
@@ -184,7 +184,7 @@ public class Model {
 			if(coord.row > 0) {			
 				boolean available = true;
 				for(int c = 0 ; c < t.width ; c++) {
-					if((puzzle.getTile(coord.col, coord.row - 1).getNumber() * t.getNumber() < 0)) {
+					if((puzzle.getTile(coord.col, coord.row - 1).getNumber() * t.getNumber() <= 0)) {
 						available = false;
 					}
 					if(puzzle.getTile(coord.col, coord.row - 1).isBlank()) {
