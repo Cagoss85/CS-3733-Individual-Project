@@ -27,6 +27,7 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
 
 public class NumberPuzzleApp extends JFrame {
 
@@ -48,6 +49,7 @@ public class NumberPuzzleApp extends JFrame {
 
 	public NumberPuzzleApp(Model m) {
 		super();
+		setBackground(Color.BLACK);
 		this.model = m;
 		setTitle("Numbers Puzzle Application");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -71,11 +73,15 @@ public class NumberPuzzleApp extends JFrame {
 		
 		
 		
-		JLabel numMovesLabel = new JLabel("Moves");
+		JLabel numMovesLabel = new JLabel("Moves:");
+		numMovesLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		actualNumMoves = new JLabel("" + model.getNumMoves());
+		actualNumMoves.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		resetButton = new JButton("Reset");
+		resetButton = new JButton("Reset Game");
+		resetButton.setForeground(Color.BLACK);
+		resetButton.setBackground(Color.WHITE);
 		resetButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,8 +89,10 @@ public class NumberPuzzleApp extends JFrame {
 			}
 		});
 		
-		upButton = new JButton("\u2191");
-		upButton.setFont(new Font("Tahoma", Font.BOLD, 24));
+		upButton = new JButton("\u25B2");
+		upButton.setForeground(new Color(0, 0, 0));
+		upButton.setBackground(new Color(255, 255, 255));
+		upButton.setFont(new Font("Impact", Font.BOLD, 24));
 		upButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -93,7 +101,9 @@ public class NumberPuzzleApp extends JFrame {
 			}
 		});
 				
-		downButton = new JButton("\u2193");
+		downButton = new JButton("\u25BC");
+		downButton.setForeground(new Color(0, 0, 0));
+		downButton.setBackground(new Color(255, 255, 255));
 		downButton.setFont(new Font("Tahoma", Font.BOLD, 24));
 		downButton.addActionListener(new ActionListener(){
 			@Override
@@ -103,7 +113,9 @@ public class NumberPuzzleApp extends JFrame {
 			}
 		});
 		
-		rightButton = new JButton("\u2192");
+		rightButton = new JButton("\u25BA");
+		rightButton.setForeground(new Color(0, 0, 0));
+		rightButton.setBackground(new Color(255, 255, 255));
 		rightButton.setFont(new Font("Tahoma", Font.BOLD, 24));
 		rightButton.addActionListener(new ActionListener(){
 			@Override
@@ -113,7 +125,9 @@ public class NumberPuzzleApp extends JFrame {
 			}
 		});
 		
-		leftButton = new JButton("\u2190");
+		leftButton = new JButton("\u25C4");
+		leftButton.setForeground(new Color(0, 0, 0));
+		leftButton.setBackground(new Color(255, 255, 255));
 		leftButton.setFont(new Font("Tahoma", Font.BOLD, 24));
 		leftButton.addActionListener(new ActionListener(){
 			@Override
@@ -131,45 +145,45 @@ public class NumberPuzzleApp extends JFrame {
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_contentPane.createSequentialGroup()
 								.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 									.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
-										.addGroup(gl_contentPane.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED)
-											.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-												.addComponent(numMovesLabel)
-												.addComponent(actualNumMoves))
-											.addPreferredGap(ComponentPlacement.RELATED, 213, Short.MAX_VALUE))
-										.addGroup(gl_contentPane.createSequentialGroup()
+										.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
 											.addGap(27)
 											.addComponent(leftButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+											.addPreferredGap(ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
 											.addComponent(rightButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-											.addGap(26)))
+											.addGap(19))
+										.addGroup(gl_contentPane.createSequentialGroup()
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(upButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+											.addGap(97)))
 									.addGroup(gl_contentPane.createSequentialGroup()
 										.addPreferredGap(ComponentPlacement.RELATED)
-										.addComponent(upButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
+										.addComponent(downButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
 										.addGap(97)))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(downButton, GroupLayout.PREFERRED_SIZE, 75, GroupLayout.PREFERRED_SIZE)
-									.addGap(97)))
-							.addGap(0))
-						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+								.addGap(0))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(statPanel, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
+								.addGap(73)))
+						.addGroup(gl_contentPane.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(statPanel, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)
-							.addGap(73))))
+							.addComponent(numMovesLabel)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(actualNumMoves, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+							.addGap(163))))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(resetButton)
-					.addContainerGap(573, Short.MAX_VALUE))
+					.addContainerGap(543, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(resetButton)
-					.addPreferredGap(ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(statPanel, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
@@ -177,14 +191,14 @@ public class NumberPuzzleApp extends JFrame {
 							.addComponent(upButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(rightButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-								.addComponent(leftButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+								.addComponent(leftButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rightButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(downButton, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-							.addGap(106)
-							.addComponent(numMovesLabel)
-							.addGap(18)
-							.addComponent(actualNumMoves))
+							.addGap(146)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(numMovesLabel)
+								.addComponent(actualNumMoves)))
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)))
 		);
 		
