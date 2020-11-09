@@ -11,14 +11,25 @@ class TestTile {
 		Tile tile = new Tile(1);
 		assertEquals (1,tile.width);
 		assertEquals(1,tile.height);
+		assertFalse(tile.isBlank());
 	}
 	
+	@Test
+	void testCopy() {
+		Tile t = new Tile(5);
+		Tile tileCopy = t.copy();
+		assertEquals(t.getCol(), tileCopy.getCol());
+		assertEquals(t.getRow(), tileCopy.getRow());
+	}
 	
-	/**
-	 * (0,0)(1,0)(2,0)
-	 * (0,1)(1,1)(2,1)
-	 * (0,2)(1,2)(2,2)
-	 */
+	@Test
+	void testNumber() {
+		Tile t = new Tile(5);
+		assertEquals(5,t.getNumber());
+		t.setNumber(7);
+		assertEquals(7,t.getNumber());
+	}
+	
 	@Test
 	void testContains() {
 		Tile t = new Tile(2);
@@ -29,5 +40,21 @@ class TestTile {
 		assertFalse(t.contains(new Coordinate(0,1)));
 		
 		assertFalse(t.contains(new Coordinate(1,1)));
+	}
+	
+	@Test
+	void setBlank()	{
+		Tile t = new Tile(2);
+		t.setBlank(true);
+		assertTrue(t.isBlank());
+	}
+	
+	@Test
+	void testCoordinate() {
+		Tile t = new Tile(2);
+		t.setCol(3);
+		t.setRow(3);
+		assertEquals(new Coordinate(3,3), t.getLocation());
+		
 	}
 }
